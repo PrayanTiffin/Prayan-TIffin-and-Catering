@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prayan Tiffin and Catering Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #16a34a;
+      --primary-soft: #dcfce7;
+      --accent: #f97316;
+      --bg: #f9fafb;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --radius-lg: 1.5rem;
+      --radius-md: 1rem;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 100% - 2.5rem);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(249, 250, 251, 0.88);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #facc15, #16a34a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f9fafb;
+      font-size: 0.8rem;
+      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.45);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.2rem;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #ecfdf5;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+      margin-bottom: 1rem;
+    }
+
+    .pill span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 3vw + 1.2rem, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #f9fafb;
+      box-shadow: 0 14px 30px rgba(21, 128, 61, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(21, 128, 61, 0.45);
+      background: #15803d;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-outline:hover {
+      background: #f9fafb;
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-meta strong {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: #fefce8;
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at -10% -10%, rgba(251, 191, 36, 0.55), transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .hero-badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: #22c55e;
+      color: #ecfdf5;
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-list {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .hero-list li::before {
+      content: "•";
+      color: #22c55e;
+      margin-right: 0.35rem;
+    }
+
+    .mini-stat {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 1rem;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.8rem;
+      box-shadow: 0 12px 24px rgba(148, 163, 184, 0.4);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+
+    /* Sections */
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-eyebrow {
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Plans */
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .plan-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.4rem 1.3rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .plan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .plan-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .plan-tag {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .plan-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .plan-price span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .plan-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .plan-list {
+      list-style: none;
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+      margin: 0.3rem 0 0.8rem;
+    }
+
+    .plan-list li::before {
+      content: "✓";
+      color: #16a34a;
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
+
+    .plan-footer {
+      margin-top: auto;
+    }
+
+    .plan-footer .btn {
+      width: 100%;
+      font-size: 0.9rem;
+    }
+
+    /* Menu */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .menu-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.3rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+    }
+
+    .menu-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .menu-table th,
+    .menu-table td {
+      padding: 0.35rem 0.2rem;
+      text-align: left;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .menu-table th {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .menu-note {
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .menu-side {
+      display: grid;
+      gap: 0.7rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .menu-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .chip {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: #ecfdf5;
+      font-size: 0.78rem;
+      color: #15803d;
+    }
+
+    /* How it works */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .step-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .step-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Order form */
+
+    .order-section {
+      padding-bottom: 3rem;
+    }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .order-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 1.6rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.2rem;
+      color: #111827;
+    }
+
+    .required {
+      color: #dc2626;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      font: inherit;
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.55rem 0.7rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background: #f9fafb;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .help-text {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .order-summary {
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .order-summary-card {
+      background: #ecfdf5;
+      border-radius: 1rem;
+      padding: 0.85rem 0.9rem;
+      font-size: 0.82rem;
+      border: 1px solid #bbf7d0;
+    }
+
+    .order-summary-card strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+      color: #14532d;
+    }
+
+    .order-summary-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.4rem 0 0;
+    }
+
+    .order-summary-list li::before {
+      content: "•";
+      color: #22c55e;
+      margin-right: 0.3rem;
+    }
+
+    .form-footer {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.75rem;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.28);
+      padding: 1.2rem 0 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .plans-grid,
+      .menu-grid,
+      .steps-grid,
+      .order-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 2.2rem;
+      }
+
+      .order-card {
+        border-radius: 1.2rem;
+      }
+
+      .plans-grid {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+      }
+
+      .field-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-icon">PT</div>
+        <span>Prayan Tiffin &amp; Catering Service</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#plans">Portions</a>
+        <a href="#menu">Menu</a>
+        <a href="#how">How it Works</a>
+        <a href="#order">Order</a>
+      </nav>
+      <button class="btn btn-primary nav-cta" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+        Order Now
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">
+            <span></span>
+            Fresh, homestyle tiffins in Durham Region
+          </div>
+          <h1>
+            Homemade taste, delivered
+            <span>every day</span>.
+          </h1>
+          <p class="hero-sub">
+            Prayan Tiffin and Catering Service brings hot, homestyle Indian meals to your door.
+            Choose your portion size, share your preferences, and enjoy stress-free tiffins across Durham Region.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary"
+              onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+              Start my order
+              <span>→</span>
+            </button>
+            <button class="btn btn-outline"
+              onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+              View sample menu
+            </button>
+          </div>
+          <div class="hero-meta">
+            <div>
+              <strong>Serving Durham Region</strong><br />
+              Select neighbourhoods across the region
+            </div>
+            <div>
+              <strong>On-time delivery</strong><br />
+              Lunch 11:30–1:30 · Dinner 6:00–8:30
+            </div>
+            <div>
+              <strong>Flexible portions</strong><br />
+              8oz · 12oz · 16oz tiffins
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="hero-card-title">Today’s Tiffin Snapshot</div>
+            <div class="hero-badge">Chef’s Special</div>
+          </div>
+          <div class="hero-card-grid">
+            <ul class="hero-list">
+              <li>2 curries (Dal Tadka + Paneer Masala)</li>
+              <li>Jeera rice or soft rotis</li>
+              <li>Salad + raita + papad</li>
+              <li>Sweet of the day</li>
+            </ul>
+            <div class="mini-stat">
+              <strong>From $10</strong>
+              8oz tiffin box<br />
+              <span style="font-size:0.72rem;">12oz $12 · 16oz $15</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANS / PORTION SIZES -->
+    <section id="plans">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Portion Sizes</div>
+          <h2>Pick the tiffin size that suits you</h2>
+          <p>Simple, transparent pricing by portion — perfect for singles, families, or office orders.</p>
+        </div>
+
+        <div class="plans-grid">
+          <!-- 8oz -->
+          <article class="plan-card">
+            <div class="plan-header">
+              <div class="plan-name">8oz Tiffin (Small)</div>
+              <div class="plan-tag">Light &amp; compact</div>
+            </div>
+            <div class="plan-price">$10 <span>/ box</span></div>
+            <p class="plan-desc">
+              Ideal for light eaters, kids, or as an add-on to your main meal.
+            </p>
+            <ul class="plan-list">
+              <li>Perfect side portion or snack</li>
+              <li>Great for variety with multiple dishes</li>
+              <li>Suitable for corporate or event tastings</li>
+            </ul>
+            <div class="plan-footer">
+              <button class="btn btn-outline" onclick="selectPlan('8oz Tiffin (Small)')">Select 8oz tiffin</button>
+            </div>
+          </article>
+
+          <!-- 12oz -->
+          <article class="plan-card" style="border:1px solid #22c55e; position:relative;">
+            <div style="position:absolute;top:-0.6rem;right:0.9rem;font-size:0.7rem;padding:0.15rem 0.6rem;border-radius:999px;background:#22c55e;color:#ecfdf5;">
+              Most popular
+            </div>
+            <div class="plan-header">
+              <div class="plan-name">12oz Tiffin (Regular)</div>
+              <div class="plan-tag">Everyday meal</div>
+            </div>
+            <div class="plan-price">$12 <span>/ box</span></div>
+            <p class="plan-desc">
+              A balanced, satisfying portion for regular lunch or dinner.
+            </p>
+            <ul class="plan-list">
+              <li>Ideal for students &amp; working professionals</li>
+              <li>Pairs perfectly with rice/roti &amp; sides</li>
+              <li>Great for recurring daily/weekly orders</li>
+            </ul>
+            <div class="plan-footer">
+              <button class="btn btn-primary" onclick="selectPlan('12oz Tiffin (Regular)')">Select 12oz tiffin</button>
+            </div>
+          </article>
+
+          <!-- 16oz -->
+          <article class="plan-card">
+            <div class="plan-header">
+              <div class="plan-name">16oz Tiffin (Large)</div>
+              <div class="plan-tag">Hungry or sharing</div>
+            </div>
+            <div class="plan-price">$15 <span>/ box</span></div>
+            <p class="plan-desc">
+              Generous portion size for big appetites, sharing, or catering add-ons.
+            </p>
+            <ul class="plan-list">
+              <li>Great for two light eaters or one heavy eater</li>
+              <li>Perfect for parties, family dinners, and events</li>
+              <li>Ideal as part of a custom catering package</li>
+            </ul>
+            <div class="plan-footer">
+              <button class="btn btn-outline" onclick="selectPlan('16oz Tiffin (Large)')">Select 16oz tiffin</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Sample Menu</div>
+          <h2>What a typical week can look like</h2>
+          <p>Menus rotate weekly and can be customized for spice level &amp; dietary needs.</p>
+        </div>
+
+        <div class="menu-grid">
+          <div class="menu-card">
+            <h3>Veg Tiffin (Example Week)</h3>
+            <table class="menu-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Main</th>
+                  <th>Sides</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mon</td>
+                  <td>Dal Tadka + Aloo Gobi</td>
+                  <td>Rotis or rice, salad, raita</td>
+                </tr>
+                <tr>
+                  <td>Tue</td>
+                  <td>Chole + Jeera Aloo</td>
+                  <td>Jeera rice, salad, papad</td>
+                </tr>
+                <tr>
+                  <td>Wed</td>
+                  <td>Paneer Curry</td>
+                  <td>Rotis, salad, sweet</td>
+                </tr>
+                <tr>
+                  <td>Thu</td>
+                  <td>Mix Veg + Kadhi</td>
+                  <td>Rice, salad, pickle</td>
+                </tr>
+                <tr>
+                  <td>Fri</td>
+                  <td>Rajma Masala</td>
+                  <td>Jeera rice, salad, sweet</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="menu-note">
+              Non-veg and special items are available on request for catering.
+              Menu may vary based on seasonal ingredients and event requirements.
+            </p>
+          </div>
+
+          <div class="menu-side">
+            <div>
+              <strong style="font-size:0.9rem;">Dietary preferences</strong>
+              <div class="menu-chip-row">
+                <span class="chip">100% veg base</span>
+                <span class="chip">Jain options</span>
+                <span class="chip">Low oil/salt</span>
+                <span class="chip">Mild spice</span>
+              </div>
+            </div>
+            <div>
+              <strong style="font-size:0.9rem;">Packaging</strong>
+              <p>
+                Food is packed in sturdy, leak-resistant containers to keep your tiffin hot and fresh on arrival
+                anywhere in Durham Region.
+              </p>
+            </div>
+            <div>
+              <strong style="font-size:0.9rem;">Delivery slots</strong>
+              <p>
+                Lunch: 11:30 AM – 1:30 PM<br />
+                Dinner: 6:00 PM – 8:30 PM
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Process</div>
+          <h2>Order in three simple steps</h2>
+          <p>Perfect for daily meals, office lunches, or small events in Durham Region.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-icon">1</div>
+            <div class="step-title">Share your details</div>
+            <p class="step-body">
+              Fill in the order form with your portion size, schedule, and dietary preferences.
+            </p>
+          </article>
+          <article class="step-card">
+            <div class="step-icon">2</div>
+            <div class="step-title">Confirm &amp; schedule</div>
+            <p class="step-body">
+              We’ll review your location in Durham Region, confirm availability, and finalize timings with you.
+            </p>
+          </article>
+          <article class="step-card">
+            <div class="step-icon">3</div>
+            <div class="step-title">Enjoy Prayan tiffins</div>
+            <p class="step-body">
+              Sit back and enjoy hot, homestyle food. Repeat daily or book us for your next gathering or office lunch.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER FORM -->
+    <section id="order" class="order-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Order</div>
+          <h2>Place your tiffin or catering request</h2>
+          <p>Send us your details and we’ll confirm your order and pricing as soon as possible.</p>
+        </div>
+
+        <div class="order-grid">
+          <div class="order-card">
+            <form id="tiffin-order-form">
+              <div class="field-row">
+                <div>
+                  <label for="name">Full Name <span class="required">*</span></label>
+                  <input id="name" name="name" type="text" required placeholder="E.g. John Doe" />
+                </div>
+                <div>
+                  <label for="phone">Phone / WhatsApp <span class="required">*</span></label>
+                  <input id="phone" name="phone" type="tel" required placeholder="10-digit mobile number" />
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div>
+                  <label for="address">Delivery Address (Durham Region) <span class="required">*</span></label>
+                  <input id="address" name="address" type="text" required placeholder="Unit, street, city" />
+                  <p class="help-text">Please include city (e.g. Oshawa, Whitby, Ajax, Pickering) and any landmark.</p>
+                </div>
+                <div>
+                  <label for="pincode">Postal Code</label>
+                  <input id="pincode" name="pincode" type="text" placeholder="E.g. L1X 0A1" />
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div>
+                  <label for="plan">Tiffin Size <span class="required">*</span></label>
+                  <select id="plan" name="plan" required>
+                    <option value="">Select portion size</option>
+                    <option value="8oz Tiffin (Small)">8oz Tiffin (Small) – $10</option>
+                    <option value="12oz Tiffin (Regular)">12oz Tiffin (Regular) – $12</option>
+                    <option value="16oz Tiffin (Large)">16oz Tiffin (Large) – $15</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="mealType">Meal Type <span class="required">*</span></label>
+                  <select id="mealType" name="mealType" required>
+                    <option value="">Lunch or Dinner?</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Both">Both (for larger / catering orders)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div>
+                  <label for="startDate">Preferred Date <span class="required">*</span></label>
+                  <input id="startDate" name="startDate" type="date" required />
+                </div>
+                <div>
+                  <label for="daysPerWeek">Frequency</label>
+                  <select id="daysPerWeek" name="daysPerWeek">
+                    <option value="">One-time or recurring?</option>
+                    <option value="One-time">One-time / event</option>
+                    <option value="3">3 days per week</option>
+                    <option value="5">5 days per week</option>
+                    <option value="7">Daily (7 days)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="diet">Dietary preferences / notes</label>
+                <textarea id="diet" name="diet"
+                  placeholder="E.g. Jain on certain days, no nuts, mild spice, gluten-free roti, etc."></textarea>
+              </div>
+
+              <div>
+                <label for="notes">Catering or special instructions</label>
+                <textarea id="notes" name="notes"
+                  placeholder="Mention approximate guest count, office name, building access info, etc."></textarea>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-primary">
+                  Submit request
+                </button>
+                <div class="help-text">
+                  By submitting, you agree to be contacted by Prayan Tiffin and Catering Service to confirm
+                  availability, pricing, and payment.
+                </div>
+                <div id="success" class="success-message">
+                  Thank you! Your request has been submitted. We’ll contact you shortly to confirm details.
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="order-summary">
+            <div class="order-summary-card">
+              <strong>How we follow up</strong>
+              <ul class="order-summary-list">
+                <li>We review your location within Durham Region and your requested date.</li>
+                <li>You receive a confirmation message with final pricing and options.</li>
+                <li>Once confirmed, your tiffin or catering order is scheduled.</li>
+              </ul>
+            </div>
+            <div>
+              <strong style="font-size:0.9rem;">Contact &amp; enquiries</strong>
+              <p>
+                Have questions about portions or catering packages?<br />
+                Call or text us and we’ll help you choose the best option for your needs.
+                <!-- TODO: Replace with your real phone/email -->
+              </p>
+            </div>
+            <div>
+              <strong style="font-size:0.9rem;">Serving areas</strong>
+              <p>
+                We currently serve select parts of Durham Region, including cities such as Oshawa, Whitby,
+                Ajax and Pickering. For other nearby areas, submit the form and we’ll confirm if we can deliver.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="year"></span> Prayan Tiffin and Catering Service. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#plans">Portions</a>
+        <a href="#menu">Menu</a>
+        <a href="#order">Order</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Auto-fill current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Pre-select plan when clicking from cards
+    function selectPlan(planName) {
+      const planSelect = document.getElementById('plan');
+      planSelect.value = planName;
+      document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+      planSelect.focus();
+    }
+
+    // Simple form handler
+    const form = document.getElementById('tiffin-order-form');
+    const successBox = document.getElementById('success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // In a real setup, send this data to your backend or Google Sheet
+      const formData = new FormData(form);
+      console.log('Prayan Tiffin order data:', Object.fromEntries(formData.entries()));
+
+      successBox.style.display = 'block';
+      form.reset();
+
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>
